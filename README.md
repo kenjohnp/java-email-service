@@ -94,9 +94,11 @@ We need to create a **EmailService** object then pass the **Properties** as argu
 Use the following methods to set the recipients
 
 **addRecipientTo(String email)**
+
 Add a single recipient to **To** 
 
 **addRecipientsTo(String[] emails)**
+
 Add multiple recipients at **To** by providing an array of email strings.
 
 **addRecipientCc(String email)**
