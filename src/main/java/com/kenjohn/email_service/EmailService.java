@@ -22,6 +22,8 @@ public interface EmailService {
 	public void setSubject(String subject) throws MessagingException;
 	
 	public void appendBody(String body) throws MessagingException;
+	
+	public void setBody(String body) throws MessagingException;
 
 	public void attachFile(File file) throws IOException, MessagingException;
 	
