@@ -94,27 +94,21 @@ We need to create a **EmailService** object then pass the **Properties** as argu
 Use the following methods to set the recipients
 
 **addRecipientTo(String email)**
-
 Add a single recipient to **To** 
 
 **addRecipientsTo(String[] emails)**
-
 Add multiple recipients at **To** by providing an array of email strings.
 
 **addRecipientCc(String email)**
-
 Add a single recipient to **Cc** 
 
 **addRecipientsCc(String[] emails)**
-
 Add multiple recipients to **Cc** by providing an array of email strings.
 
 **addRecipientBcc(String email)**
-
 Add a single recipient to **Bcc** 
 
 **addRecipientsBcc(String[] emails)**
-
 Add multiple recipients to **Bcc** by providing an array of email strings.
 
 #### Setting Email Subject
@@ -124,18 +118,14 @@ Sets the email subject
 #### Setting up Email Body
 
 **appendBody(String body)**
-
 Append string to message body. Use HTML tags for text formatting.
 
 **setBody(String body)**
-
 Replaces current body with a new one.
 
 **attachFile(File file)**
-
 Attach file to email.
 
 #### Sending Email
 **send()**
-
 After composing the Email using the methods above, you can call this method to begin sending an email.
