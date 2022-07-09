@@ -3,6 +3,9 @@
 A basic email service for Java using Java Mail API for ease of usage.
 
 #### Contents
+**EmailMessage.java**
+Composed email to send.
+
 **EmailService.java**
 An interface for EmailService.
 
@@ -25,16 +28,17 @@ contains sample usages.
     			e1.printStackTrace();
     		}
         	
-        	EmailService emailService = new EmailServiceImpl(props);
+        	var emailService = new EmailServiceImpl(props);
+			var message = new EmailMessage();
         	
         	try {
-        		emailService.setFrom("email@gmail.com");
-    			emailService.addRecipientTo("email@gmail.com");
-    			emailService.setSubject("Sample Email Subject");
-    			emailService.appendBody("<b>Sample Body using HTML</b>");
-    			emailService.appendBody("Plain Text body appended");
-    			emailService.attachFile(new File("E:\\folder\\file.txt"));
-    			emailService.send();
+        		
+    			message.addRecipient(RecipientTypes.TO, "email@gmail.com");
+    			message.setSubject("Sample Email Subject");
+    			message.appendBody("<b>Sample Body using HTML</b>");
+    			message.appendBody("Plain Text body appended");
+    			message.attachFile(new File("E:\\folder\\file.txt"));
+    			emailService.send(message);
     		} catch (MessagingException | IOException e) {
     			e.printStackTrace();
     		}
@@ -93,23 +97,17 @@ We need to create a **EmailService** object then pass the **Properties** as argu
 #### Setting up Email Recipients
 Use the following methods to set the recipients
 
-**addRecipientTo(String email)**
-Add a single recipient to **To** 
+**Recipient Types**
+RecipientTypes.TO,
+RecipientTypes.CC,
+RecipientTypes.BCC,
 
-**addRecipientsTo(String[] emails)**
-Add multiple recipients at **To** by providing an array of email strings.
+**addRecipient(Recipient Type, String email)**
+Add a single recipient according to Recipient Type.
 
-**addRecipientCc(String email)**
-Add a single recipient to **Cc** 
+**addRecipients(String[] emails)**
+Add array of recipients according to Recipient Type.
 
-**addRecipientsCc(String[] emails)**
-Add multiple recipients to **Cc** by providing an array of email strings.
-
-**addRecipientBcc(String email)**
-Add a single recipient to **Bcc** 
-
-**addRecipientsBcc(String[] emails)**
-Add multiple recipients to **Bcc** by providing an array of email strings.
 
 #### Setting Email Subject
 **setSubject(String subject)**
@@ -127,5 +125,5 @@ Replaces current body with a new one.
 Attach file to email.
 
 #### Sending Email
-**send()**
+**send(EmailMessage message)**
 After composing the Email using the methods above, you can call this method to begin sending an email.
