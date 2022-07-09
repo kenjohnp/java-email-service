@@ -18,20 +18,23 @@ public class Main
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+	
+    	EmailMessage email = new EmailMessage();
     	
-    	EmailService emailService = new EmailServiceImpl(props);
-    	
-    	try {
-    		emailService.setFrom("email@gmail.com");
-			emailService.addRecipientTo("email@gmail.com");
-			emailService.setSubject("Sample Email Subject");
-			emailService.appendBody("<html><b>Sample Body using HTML</b></html>");
-			emailService.appendBody("Plain Text body appended");
-			//emailService.attachFile(new File("E:\\folder\\file.txt"));
-			emailService.send();
-		} catch (MessagingException | IOException e) {
-			e.printStackTrace();
-		}
-        
+    		try {
+				EmailService emailService = new EmailServiceImpl(props);
+				email.addRecipient(RecipientTypes.TO, "kenjohnp@gmail.com");
+				email.setSubject("Sample Email Subject");
+				email.appendBody("<html><b>Sample Body using HTML</b></html>");
+				email.appendBody("Plain Text body appended");
+				email.attachFile(new File("E:\\DCIM\\Screenshots\\12.jpg"));
+				emailService.send(email);
+			} catch (MessagingException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+
+	
     }
 }
